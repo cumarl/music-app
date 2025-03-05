@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+.album-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.album-list li {
+    background: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}

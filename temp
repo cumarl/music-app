@@ -1,0 +1,13 @@
+if command -v apk &> /dev/null; then
+    apk update
+    apk add jq curl
+  else
+    echo "apk is not installed. Assuming required binaries exist."
+  fi
+  ID_TOKEN=$(curl -sLS -H "User-Agent: actions/oidc-client" -H "Authorization: ***" \
+  "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq .value | tr -d '"')
+  echo "ID_TOKEN=${ID_TOKEN}" >> $GITHUB_ENV
+  ACCESS_TOKEN=$(curl -XPOST -H "Content-Type: application/json" "***/access/api/v1/oidc/token" -d "{\"grant_type\": \"urn:ietf:params:oauth:grant-type:token-exchange\", \"subject_token_type\":\"urn:ietf:params:oauth:token-type:id_token\", \"subject_token\": \"${ID_TOKEN}\", \"provider_name\": \"xpanse-github\"}" | jq .access_token | tr -d '"')
+  echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> $GITHUB_ENV
+  echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> $GITHUB_OUTPUT
+  echo "::add-mask::$ACCESS_TOKEN"

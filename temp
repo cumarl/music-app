@@ -11,3 +11,6 @@ if command -v apk &> /dev/null; then
   echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> $GITHUB_ENV
   echo "ACCESS_TOKEN=${ACCESS_TOKEN}" >> $GITHUB_OUTPUT
   echo "::add-mask::$ACCESS_TOKEN"
+
+
+https://login.microsoftonline.com/cleiue989-dkdke9999-dkdk099-dkddk0687uueuiu/oauth2/v2.0/authorize?client_id=<your-client-id>&response_type=code&redirect_uri=https://<your-gate-host>:8084/login&scope=openid+profile+email&prompt=consent
